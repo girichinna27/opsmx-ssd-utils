@@ -18,7 +18,7 @@ on:
     secrets:
       SSD_TOKEN:
         required: true
-      GIT_PAT_TOKEN:
+      GIT_TOKEN:
         required: true
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
         with:
           repository: OpsMx/opsmx-ssd-utils
           ref: refs/heads/main
-          token: ${{ secrets.GIT_PAT_TOKEN }}
+          token: ${{ secrets.GIT_TOKEN }}
           path: opsmx-ssd-utils
 
       - name: Send SSD Webhook (Build Event)
