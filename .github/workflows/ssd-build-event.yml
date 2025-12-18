@@ -26,6 +26,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: DEBUG – Check secrets availability
+        run: |
+          echo "SSD_TOKEN length: ${#SSD_TOKEN}"
+          echo "GIT_PAT_TOKEN length: ${#GIT_PAT_TOKEN}"
+          
       - name: Checkout SSD Utils Repo
         uses: actions/checkout@v4
         with:
