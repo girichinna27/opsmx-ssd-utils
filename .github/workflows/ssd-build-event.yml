@@ -1,0 +1,49 @@
+name: SSD Build Event (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        description: "Fully qualified image name"
+        required: true
+        type: string
+      job_name:
+        description: "GitHub repository name"
+        required: true
+        type: string
+      branch_name:
+        description: "Git ref name"
+        required: true
+        type: string
+    secrets:
+      SSD_TOKEN:
+        required: true
+      GIT_PAT_TOKEN:
+        required: true
+
+jobs:
+  send-ssd-event:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout SSD Utils Repo
+        uses: actions/checkout@v4
+        with:
+          repository: OpsMx/opsmx-ssd-utils
+          ref: refs/heads/main
+          token: ${{ secrets.GIT_PAT_TOKEN }}
+          path: opsmx-ssd-utils
+
+      - name: Send SSD Webhook (Build Event)
+        env:
+          SSD_URL: ${{ vars.SSD_ART_URL }}
+          SSD_TOKEN: ${{ secrets.SSD_TOKEN }}
+          JOB_NAME: ${{ inputs.job_name }}
+          BUILD_NUMBER: ${{ github.run_number }}
+          JOB_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          GIT_URL: ${{ github.repositoryUrl }}
+          BRANCH_NAME: ${{ inputs.branch_name }}
+          IMAGENAME: ${{ inputs.image_name }}
+        run: |
+          chmod +x opsmx-ssd-utils/scripts/send_ssd_webhook.sh
+          ./opsmx-ssd-utils/scripts/send_ssd_webhook.sh
