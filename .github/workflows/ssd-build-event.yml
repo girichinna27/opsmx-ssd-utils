@@ -36,7 +36,7 @@ jobs:
         with:
           repository: girichinna27/opsmx-ssd-utils
           ref: refs/heads/main
-          token: ${{ secrets.GIT_TOKEN }}
+          #token: ${{ secrets.GIT_TOKEN }}
           path: opsmx-ssd-utils
 
       - name: Send SSD Webhook (Build Event)
