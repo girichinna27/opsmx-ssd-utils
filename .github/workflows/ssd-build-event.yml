@@ -27,9 +27,12 @@ jobs:
 
     steps:
       - name: DEBUG – Check secrets availability
+        env:
+          SSD_TOKEN: ${{ secrets.SSD_TOKEN }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           echo "SSD_TOKEN length: ${#SSD_TOKEN}"
-          echo "GIT_PAT_TOKEN length: ${#GIT_PAT_TOKEN}"
+          echo "GIT_TOKEN length: ${#GIT_TOKEN}"
           
       - name: Checkout SSD Utils Repo
         uses: actions/checkout@v4
