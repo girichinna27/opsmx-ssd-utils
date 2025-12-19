@@ -16,6 +16,8 @@ on:
         required: true
         type: string
     secrets:
+      SSD_URL:
+        required: true    
       SSD_TOKEN:
         required: true
       GIT_TOKEN:
@@ -44,7 +46,7 @@ jobs:
 
       - name: Send SSD Webhook (Build Event)
         env:
-          SSD_URL: ${{ vars.SSD_ART_URL }}
+          SSD_URL: ${{ secrets.SSD_URL }}
           SSD_TOKEN: ${{ secrets.SSD_TOKEN }}
           JOB_NAME: ${{ inputs.job_name }}
           BUILD_NUMBER: ${{ github.run_number }}
