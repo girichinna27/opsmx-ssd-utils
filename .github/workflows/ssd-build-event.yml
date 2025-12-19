@@ -28,6 +28,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: DEBUG – inputs received
+        run: |
+          echo "IMAGE_NAME = '${{ inputs.image_name }}'"
+          echo "JOB_NAME   = '${{ inputs.job_name }}'"
+          echo "BRANCH     = '${{ inputs.branch_name }}'"
+    
       - name: DEBUG – Check secrets availability
         env:
           SSD_TOKEN: ${{ secrets.SSD_TOKEN }}
