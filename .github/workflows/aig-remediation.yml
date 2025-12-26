@@ -2,8 +2,6 @@ name: PR Scan Remediation API Callback
 
 on:
   workflow_call:
-  pull_request:
-    types: [opened, synchronize, reopened]
 
 jobs:
   call_external_api:
