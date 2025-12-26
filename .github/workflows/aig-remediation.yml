@@ -2,6 +2,9 @@ name: PR Scan Remediation API Callback
 
 on:
   workflow_call:
+    secrets:
+      GH_TOKEN:
+        required: true  
 
 jobs:
   call_external_api:
