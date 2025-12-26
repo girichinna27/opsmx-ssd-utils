@@ -5,9 +5,16 @@ on:
     secrets:
       GH_TOKEN:
         required: true  
-    with:
-      service_name: oes-echo
-      base_branch: release        
+    inputs:
+      service_name:
+        description: "Service name"
+        required: true
+        type: string
+
+      base_branch:
+        description: "Base branch"
+        required: true
+        type: string    
 
 jobs:
   call_external_api:
